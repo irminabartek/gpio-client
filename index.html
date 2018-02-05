@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GPIO Client</title>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
+
+    <script type="text/javascript" src="app.js"></script>
+</head>
+<body ng-app="gpioClient">
+    <div ng-controller="mainCtrl" class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>GPIO pins</h2>
+                <button class="btn btn-default"
+                        ng-class="{'btn-success': pinsStates[pin]}"
+                        ng-click="onPinClick(pin)"
+                        ng-repeat="pin in pins">{{pin}}</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>System logs</h2>
+                <code>
+                    <ul class="list-unstyled">
+                        <li ng-repeat="log in logs track by $index">{{log}}</li>
+                    </ul>
+                </code>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
