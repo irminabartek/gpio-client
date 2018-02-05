@@ -1,3 +1,9 @@
 .gpio-button{
     margin-bottom: 8px;
 }
+
+.gpio-button button.btn{
+    font-size: 35px;
+    line-height: 3;
+    width: 100%;
+}
