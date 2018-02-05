@@ -8,28 +8,46 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
 
     <script type="text/javascript" src="app.js"></script>
+    <link rel="stylesheet" href="default.css"/>
 </head>
 <body ng-app="gpioClient">
-    <div ng-controller="mainCtrl" class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <h2>GPIO pins</h2>
-                <button class="btn btn-default"
-                        ng-class="{'btn-success': pinsStates[pin]}"
-                        ng-click="onPinClick(pin)"
-                        ng-repeat="pin in pins">{{pin}}</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <h2>System logs</h2>
-                <code>
-                    <ul class="list-unstyled">
-                        <li ng-repeat="log in logs track by $index">{{log}}</li>
-                    </ul>
-                </code>
-            </div>
+<div ng-controller="mainCtrl" class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>GPIO Control</h1>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-1">
+            <h4>On</h4>
+            <div class="gpio-button" ng-repeat="pin in pins">
+                <button class="btn btn-success btn-lg"
+                        ng-click="onPinClick(pin,1)">
+                        <span ng-if="(''+pin).length==1">0{{pin}}</span>
+                        <span ng-if="(''+pin).length>1">{{pin}}</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-xs-1">
+            <h4>Off</h4>
+            <div class="gpio-button" ng-repeat="pin in pins">
+                <button class="btn btn-danger btn-lg"
+                        ng-click="onPinClick(pin,0)">
+                        <span ng-if="(''+pin).length==1">0{{pin}}</span>
+                        <span ng-if="(''+pin).length>1">{{pin}}</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-xs-1"></div>
+        <div class="col-xs-9">
+            <h4>System logs</h4>
+            <code>
+                <ul class="list-unstyled">
+                    <li ng-repeat="log in logs track by $index">{{log}}</li>
+                </ul>
+            </code>
+        </div>
+    </div>
+</div>
 </body>
 </html>

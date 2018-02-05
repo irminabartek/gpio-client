@@ -5,14 +5,12 @@ angular.module('gpioClient').controller('mainCtrl', function ($scope, $http) {
 
     $scope.pins = [2, 3, 4, 7, 8, 9, 10, 11, 14, 15];
     $scope.logs = ["System initialized"];
-    $scope.pinsStates = {};
 
-    $scope.onPinClick = function (pinNumber) {
-        var pinUrl = apiUrl + pinNumber;
+    $scope.onPinClick = function (pinNumber, value) {
+        var pinUrl = apiUrl + pinNumber + '/' + value;
         var occurenceDate = new Date().toLocaleString();
         $http.get(pinUrl).then(function (results) {
             $scope.logs.push('[' + occurenceDate + '] Sent to gpio pin ' + pinNumber + ' (' + pinUrl + ')');
-            $scope.pinsStates[pinNumber] = results.data.value;
         }).catch(function (err) {
             $scope.logs.push('[' + occurenceDate + '] ERROR: ' + err.data.message + ' at ' + err.config.url);
         });
